@@ -253,11 +253,11 @@ require('lazy').setup({
           width = 30,
           side = 'left',
         },
-        renderer = { 
+        renderer = {
           group_empty = true,
         },
         filters = {
-          dotfiles = true,
+          dotfiles = false,
         },
     })
     end,

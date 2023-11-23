@@ -94,13 +94,6 @@
         "tooltip": false
     },
 
-    // Waybar Themes
-    "custom/waybarthemes": {
-        "format": "",
-        "on-click": "~/dotfiles/waybar/themeswitcher.sh",
-        "tooltip": false
-    },
-
     // Keybindings
     "custom/keybindings": {
         "format": "",
@@ -154,13 +147,6 @@
     "custom/calculator": {
         "format": "",
         "on-click": "qalculate-gtk",
-        "tooltip": false
-    },
-
-    // Windows VM
-    "custom/windowsvm": {
-        "format": "",
-        "on-click": "~/dotfiles/scripts/launchvm.sh",
         "tooltip": false
     },
 
@@ -243,8 +229,8 @@
     "battery": {
         "states": {
             // "good": 95,
-            "warning": 30,
-            "critical": 15
+            "warning": 35,
+            "critical": 20
         },
         "format": "{icon}   {capacity}%",
         "format-charging": "  {capacity}%",
