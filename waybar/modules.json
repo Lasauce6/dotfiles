@@ -20,7 +20,7 @@
 			"active": "",
 			"default": ""
         },
-        "persistent_workspaces": {
+        "persistent-workspaces": {
              "*": 5
         }       
     },
@@ -180,6 +180,15 @@
     "tray": {
         // "icon-size": 21,
         "spacing": 10
+    },
+
+    // Idle Inhibitor
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
     },
 
     // Clock

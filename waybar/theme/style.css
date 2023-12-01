@@ -153,6 +153,24 @@ window#waybar.empty #window {
 }
 
 /* -----------------------------------------------------
+ * Idle inhibitor
+ * ----------------------------------------------------- */
+
+#idle_inhibitor {
+    background: @backgroundlight;
+    background-color: @backgroundlight;
+    margin: 6px 15px 6px 0px;
+    padding:0px;
+    padding: 2px 3px 1px 3px;
+    border-radius: 15px;
+    font-weight: normal;
+    font-style: normal;
+    opacity:0.8;
+    border: 3px solid @backgroundlight;
+}
+
+
+/* -----------------------------------------------------
  * Modules
  * ----------------------------------------------------- */
 

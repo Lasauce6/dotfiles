@@ -214,7 +214,7 @@ require('lazy').setup({
     },
     build = ':TSUpdate',
   },
-  
+ 
   {
     'github/copilot.vim',
     build = ':Copilot setup',
