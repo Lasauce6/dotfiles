@@ -14,6 +14,7 @@ case $1 in
     # Load wallpaper from .cache of last session 
     "init")
         if [ -f ~/.cache/wallpaper/current_wallpaper.jpg ]; then
+            rm ~/.cache/wal/schemes/*current_wallpaper_jpg*
             wal -q -i ~/.cache/wallpaper/current_wallpaper.jpg
         else
             wal -q -i ~/wallpaper/
@@ -49,7 +50,7 @@ echo "Wallpaper: $wallpaper"
 cp $wallpaper ~/.cache/wallpaper/current_wallpaper.jpg
 
 # ----------------------------------------------------- 
-# get wallpaper iamge name
+# get wallpaper image name
 # ----------------------------------------------------- 
 newwall=$(echo $wallpaper | sed "s|$HOME/wallpaper/||g")
 
