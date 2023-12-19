@@ -16,23 +16,23 @@ case $1 in
             rm ~/.cache/wal/schemes/*current_wallpaper_jpg*
             wal -q -i ~/.cache/wallpaper/current_wallpaper.jpg
         else
-            wal -q -i ~/wallpaper/
+            wal -q -i ~/dotfiles/wallpaper/
         fi
     ;;
 
     # Select wallpaper with rofi
     "select")
-        selected=$(ls -1 ~/wallpaper | grep "jpg" | rofi -dmenu -replace -config ~/dotfiles/rofi/config-wallpaper.rasi)
+        selected=$(ls -1 ~/dotfiles/wallpaper | grep "jpg" | rofi -dmenu -replace -config ~/dotfiles/rofi/config-wallpaper.rasi)
         if [ ! "$selected" ]; then
             echo "No wallpaper selected"
             exit
         fi
-        wal -q -i ~/wallpaper/$selected
+        wal -q -i ~/dotfiles/wallpaper/$selected
     ;;
 
     # Randomly select wallpaper 
     *)
-        wal -q -i ~/wallpaper/
+        wal -q -i ~/dotfiles/wallpaper/
     ;;
 
 esac
@@ -51,7 +51,7 @@ cp $wallpaper ~/.cache/wallpaper/current_wallpaper.jpg
 # ----------------------------------------------------- 
 # get wallpaper image name
 # ----------------------------------------------------- 
-newwall=$(echo $wallpaper | sed "s|$HOME/wallpaper/||g")
+newwall=$(echo $wallpaper | sed "s|$HOME/dotfiles/wallpaper/||g")
 
 # ----------------------------------------------------- 
 # Reload waybar with new colors
