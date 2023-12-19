@@ -5,7 +5,6 @@
 #  ___) | || (_| | |  | |_    \ V  V / (_| | |_| | |_) | (_| | |    
 # |____/ \__\__,_|_|   \__|    \_/\_/ \__,_|\__, |_.__/ \__,_|_|    
 #                                           |___/                   
-# by Stephan Raabe (2023) 
 # ----------------------------------------------------- 
 
 # ----------------------------------------------------- 
@@ -17,9 +16,9 @@ sleep 0.2
 # ----------------------------------------------------- 
 # Loading the configuration
 # -----------------------------------------------------
-host=$(cat /etc/hostname)
+host=$(. ~/dotfiles/scripts/checkplatform.sh)
 
-if [ $host == "ZouglouFixe" ]; then
+if [ $host == 3 ]; then
     waybar -c ~/dotfiles/waybar/theme/deskConfig -s ~/dotfiles/waybar/theme/style.css &
 else
     waybar -c ~/dotfiles/waybar/theme/laptConfig -s ~/dotfiles/waybar/theme/style.css &

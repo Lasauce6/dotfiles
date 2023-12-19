@@ -26,7 +26,6 @@
 
 	// Modules Left
 	"modules-left": [
-		"custom/appmenu",
 		"tray",
 		"custom/wallpaper",
 		"custom/chatgpt",          
@@ -86,7 +85,6 @@
 
 	// Modules Left
 	"modules-left": [
-		"custom/appmenu",
 		"wlr/taskbar",	
 		"hyprland/window"
 	],

@@ -4,7 +4,6 @@
 #  _| |_) | (_| \__ \ | | | | | (__ 
 # (_)_.__/ \__,_|___/_| |_|_|  \___|
 # 
-# by Stephan Raabe (2023)
 # -----------------------------------------------------
 # ~/.bashrc
 # -----------------------------------------------------
@@ -26,9 +25,7 @@ alias v='nvim'
 alias ts='~/dotfiles/scripts/snapshot.sh'
 alias matrix='cmatrix'
 alias wifi='nmtui'
-alias od='~/private/onedrive.sh'
-alias rw='~/dotfiles/waybar/reload.sh'
-alias winclass="xprop | grep 'CLASS'"
+alias rw='~/dotfiles/waybar/launch.sh'
 alias dot="cd ~/dotfiles"
 alias clean-arch='yay -Sc && yay -Yc && flatpak remove --unused'
 alias update-mirrors='sudo reflector --verbose --score 20 --fastest 5 --sort rate --save /etc/pacman.d/mirrorlist'
@@ -50,43 +47,13 @@ alias gcheck="git checkout"
 # SCRIPTS
 # -----------------------------------------------------
 
-alias gr='python ~/dotfiles/scripts/growthrate.py'
-alias ChatGPT='python ~/mychatgpt/mychatgpt.py'
-alias chat='python ~/mychatgpt/mychatgpt.py'
 alias ascii='~/dotfiles/scripts/figlet.sh'
-
-# -----------------------------------------------------
-# VIRTUAL MACHINE
-# -----------------------------------------------------
-
-alias vm='~/private/launchvm.sh'
-alias lg='~/dotfiles/scripts/looking-glass.sh'
-alias vmstart='virsh --connect qemu:///system start win11'
-alias vmstop='virsh --connect qemu:///system destroy win11'
-
-# -----------------------------------------------------
-# EDIT CONFIG FILES
-# -----------------------------------------------------
-
-alias confq='nvim ~/dotfiles/qtile/config.py'
-alias confp='nvim ~/dotfiles/picom/picom.conf'
-alias confb='nvim ~/dotfiles/.bashrc'
-
-# -----------------------------------------------------
-# EDIT NOTES
-# -----------------------------------------------------
-
-alias notes='vim ~/notes.txt'
 
 # -----------------------------------------------------
 # SYSTEM
 # -----------------------------------------------------
 
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
-alias setkb='setxkbmap de;echo "Keyboard set back to de."'
-
-
-export PATH="/usr/lib/ccache/bin/:$PATH"
 
 # -----------------------------------------------------
 # START STARSHIP
@@ -109,3 +76,6 @@ else
         echo "Start Hyprland with command Hyprland"
     fi
 fi
+
+# Created by `pipx` on 2023-12-15 14:31:54
+export PATH="$PATH:/home/lasauce6/.local/bin"

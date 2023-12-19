@@ -70,6 +70,15 @@ window#waybar {
     opacity:1.0;
 }
 
+#workspaces button.visible {
+    color: @textcolor1;
+    background: @workspacesbackground2;
+    border-radius: 15px;
+    min-width: 40px;
+    transition: all 0.3s ease-in-out;
+    opacity:1.0;
+}
+
 #workspaces button:hover {
     color: @textcolor1;
     background: @workspacesbackground2;
@@ -117,16 +126,16 @@ window#waybar.empty #window {
  * ----------------------------------------------------- */
 
 #tray {
-    background: @backgroundlight;
-    background-color: @backgroundlight;
-    margin: 6px 15px 6px 0px;
+    background: @backgrounddark;
+    background-color: @backgrounddark;
+    margin: 6px 15px 6px 14px;
     padding:0px;
     padding: 2px 3px 1px 3px;
     border-radius: 15px;
     font-weight: normal;
     font-style: normal;
     opacity:0.8;
-    border: 3px solid @backgroundlight;
+    border: 3px solid @backgrounddark;
 }
 
 #tray button {
@@ -137,7 +146,7 @@ window#waybar.empty #window {
 
 #taskbar {
     background: @backgroundlight;
-    margin: 6px 15px 6px 0px;
+    margin: 6px 15px 6px 14px;
     padding:0px;
     border-radius: 15px;
     font-weight: normal;
@@ -204,6 +213,10 @@ window#waybar.empty #window {
     font-weight: bold;
     opacity: 0.8;
     color: @iconcolor;
+}
+
+#custom-chatgpt {
+    margin-right: 5px;
 }
 
 #custom-wallpaper, #custom-keybindings {
@@ -406,23 +419,6 @@ window#waybar.empty #window {
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
-
-/* -----------------------------------------------------
- * Tray
- * ----------------------------------------------------- */
-
-/* #tray { */
-/*     background-color: #2980b9; */
-/* } */
-/**/
-/* #tray > .passive { */
-/*     -gtk-icon-effect: dim; */
-/* } */
-/**/
-/* #tray > .needs-attention { */
-/*     -gtk-icon-effect: highlight; */
-/*     background-color: #eb4d4b; */
-/* } */
 
 /* -----------------------------------------------------
  * Other
