@@ -20,3 +20,5 @@ sleep 1
 sleep 2
 # start xdg-desktop-portal
 /usr/lib/xdg-desktop-portal &
+# set environment variables
+dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP

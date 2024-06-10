@@ -16,7 +16,7 @@ configuration {
     show-icons:                 false;
     icon-theme:                 "kora";
     display-drun:               "APPS";
-    display-run:                "RUN";
+    display-run:		"RUN";
     display-filebrowser:        "FILES";
     display-window:             "WINDOW";
 	hover-select:               true;

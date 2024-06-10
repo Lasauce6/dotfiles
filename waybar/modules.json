@@ -12,15 +12,13 @@
     // Workspaces
     "hyprland/workspaces" : {
         "on-click": "activate",
-        "on-scroll-up": "hyprctl dispatch workspace e+1",
-        "on-scroll-down": "hyprctl dispatch workspace e-1",
         "active-only": false,
         "format-icons": {
 			"urgent": "",
 			"active": "",
 			"default": ""
         },
-        "persistent-workspaces": {
+        "persistent_workspaces": {
              "*": 5
         }       
     },
@@ -55,15 +53,6 @@
         },
         "separate-outputs": true
     },
-
-    // Youtube Subscriber Count
-    "custom/youtube": {
-        "format": " {}",
-        "exec": "python ~/private/youtube.py",
-        "restart-interval": 600,
-        "on-click": "brave https://studio.youtube.com",
-        "tooltip": false
-    },
     
     // Cliphist
     "custom/cliphist": {
@@ -89,29 +78,22 @@
     // Wallpaper
     "custom/wallpaper": {
         "format": "",
-        "on-click": "~/dotfiles/hypr/scripts/wallpaper.sh select",
-        "on-click-right": "~/dotfiles/hypr/scripts/wallpaper.sh",
+        "on-click": "~/dotfiles/scripts/wallpaper-swww.sh",
+        "on-click-right": "~/dotfiles/scripts/updatewal-swww.sh",
         "tooltip": false
     },
 
-    // Keybindings
-    "custom/keybindings": {
-        "format": "",
-        "on-click": "~/dotfiles/hypr/scripts/keybindings.sh",
+    // Waybar Themes
+    "custom/waybarthemes": {
+        "format": "",
+        "on-click": "~/dotfiles/waybar/themeswitcher.sh",
         "tooltip": false
     },
 
     // Filemanager Launcher
     "custom/filemanager": {
         "format": "",
-        "on-click": "thunar",
-        "tooltip": false
-    },
-
-    // Outlook Launcher
-    "custom/outlook": {
-        "format": "",
-        "on-click": "brave --app=https://outlook.office.com/mail/",
+        "on-click": "~/dotfiles/scripts/filemanager.sh",
         "tooltip": false
     },
 
@@ -124,17 +106,10 @@
 
     // Brave Launcher
     "custom/brave": {
-        "format": "",
+       "format": "",
         "on-click": "brave",
         "tooltip": false
     },
-
-    // Browser Launcher
-    "custom/browser": {
-        "format": "",
-        "on-click": "chromium",
-        "tooltip": false
-    },    
 
     // ChatGPT Launcher
     "custom/chatgpt": {
@@ -143,21 +118,20 @@
         "tooltip": false
     },
 
-    // Calculator
-    "custom/calculator": {
-        "format": "",
-        "on-click": "qalculate-gtk",
+    // Windows VM
+    "custom/windowsvm": {
+        "format": "",
+        "on-click": "~/dotfiles/scripts/launchvm.sh",
         "tooltip": false
     },
 
     // Rofi Application Launcher
     "custom/appmenu": {
         "format": "Apps",
-        "on-click": "rofi -show drun -replace",
-        "on-click-right": "~/dotfiles/hypr/scripts/keybindings.sh",
+        "on-click": "~/dotfiles/scripts/applauncher.sh",
         "tooltip": false
     },
-    
+
     // Power Menu
     "custom/exit": {
         "format": "",
@@ -180,7 +154,7 @@
     "tray": {
         // "icon-size": 21,
         "spacing": 10
-    },
+    },    
 
     // Idle Inhibitor
     "idle_inhibitor": {
@@ -193,9 +167,9 @@
 
     // Clock
     "clock": {
-        // "timezone": "America/New_York",
         "format": "{:%H:%M:%S}",
         "interval": 1,
+        "timezone": "Europe/Paris",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%d/%m/%Y}"
     },
@@ -225,13 +199,12 @@
         "format": "{ifname}",
         "format-wifi": "   {signalStrength}%",
         "format-ethernet": "  {ipaddr}",
-        "format-disconnected": "Not connected", //An empty format will hide the module.
+        "format-disconnected": "", //An empty format will hide the module.
         "tooltip-format": " {ifname} via {gwaddri}",
         "tooltip-format-wifi": "   {essid} ({signalStrength}%)",
         "tooltip-format-ethernet": "  {ifname} ({ipaddr}/{cidr})",
         "tooltip-format-disconnected": "Disconnected",
-        "max-length": 50,
-        "on-click": "alacritty -e nmtui"
+        "max-length": 50
     },
 
     // Battery
@@ -239,7 +212,7 @@
         "states": {
             // "good": 95,
             "warning": 35,
-            "critical": 20
+            "critical": 25
         },
         "format": "{icon}   {capacity}%",
         "format-charging": "  {capacity}%",
@@ -254,8 +227,8 @@
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
         "format": "{icon} {volume}%",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon}  {format_source}",
+        "format-bluetooth-muted": " {icon}  {format_source}",
         "format-muted": " {format_source}",
         "format-source": "{volume}% ",
         "format-source-muted": "",
