@@ -1,15 +1,6 @@
-#    _               _              
-#   | |__   __ _ ___| |__  _ __ ___ 
-#   | '_ \ / _` / __| '_ \| '__/ __|
-#  _| |_) | (_| \__ \ | | | | | (__ 
-# (_)_.__/ \__,_|___/_| |_|_|  \___|
-# 
-# -----------------------------------------------------
-# ~/.bashrc
-# -----------------------------------------------------
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
-PS1='[\u@\h \W]\$ '
+# PS1='[\u@\h \W]\$ '
 
 # -----------------------------------------------------
 # ALIASES
@@ -57,7 +48,7 @@ alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 # -----------------------------------------------------
 # START STARSHIP
 # -----------------------------------------------------
-eval "$(starship init bash)"
+eval "$(starship init zsh)"
 
 # -----------------------------------------------------
 # PYWAL
@@ -75,3 +66,21 @@ else
         echo "Start Hyprland with command Hyprland"
     fi
 fi
+
+TERM=xterm-256color
+
+# The following lines were added by compinstall
+
+zstyle ':completion:*' completer _complete _ignored _approximate
+zstyle :compinstall filename '/home/lasauce6/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+bindkey -e
+# End of lines configured by zsh-newuser-install
+
