@@ -420,6 +420,11 @@ window#waybar.empty #window {
     animation-direction: alternate;
 }
 
+#battery.warning:not(.charging) {
+    background-color: #ff9a3c;
+    color: @textcolor3;
+}
+
 /* -----------------------------------------------------
  * Other
  * ----------------------------------------------------- */
