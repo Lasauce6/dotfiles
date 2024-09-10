@@ -19,10 +19,7 @@ alias rw='~/dotfiles/waybar/launch.sh'
 alias dot="cd ~/dotfiles"
 alias clean-arch='yay -Sc && yay -Yc && flatpak remove --unused'
 alias update-mirrors='sudo reflector --verbose --score 20 --fastest 5 --sort rate --save /etc/pacman.d/mirrorlist'
-<<<<<<< HEAD
-=======
 alias ssh="TERM=xterm-256color $(which ssh)"
->>>>>>> 32302559544009fefce400d15bf32ba8f6bba83b
 
 # -----------------------------------------------------
 # GIT
@@ -71,7 +68,6 @@ else
     fi
 fi
 
-<<<<<<< HEAD
 TERM=xterm-256color
 
 # The following lines were added by compinstall
@@ -89,7 +85,5 @@ SAVEHIST=1000
 bindkey -e
 # End of lines configured by zsh-newuser-install
 
-=======
 # Created by `pipx` on 2023-12-15 14:31:54
 export PATH="$PATH:/home/lasauce6/.local/bin"
->>>>>>> 32302559544009fefce400d15bf32ba8f6bba83b
