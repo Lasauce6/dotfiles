@@ -1,9 +1,15 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
-# PS1='[\u@\h \W]\$ '
 
-# Setup colors
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# Path to your Oh My Zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
 
 
 # -----------------------------------------------------
@@ -13,7 +19,6 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 alias c='clear'
 alias nf='neofetch'
 alias pf='pfetch'
-alias ls='ls -G'
 alias shutdown='systemctl poweroff'
 alias v='nvim'
 alias ts='~/dotfiles/scripts/snapshot.sh'
@@ -53,16 +58,19 @@ alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 # -----------------------------------------------------
 # START STARSHIP
 # -----------------------------------------------------
+
 eval "$(starship init zsh)"
 
 # -----------------------------------------------------
 # PYWAL
 # -----------------------------------------------------
+
 # cat ~/.cache/wal/sequences
 
 # -----------------------------------------------------
 # PFETCH if on wm
 # -----------------------------------------------------
+
 pfetch
 
 TERM=xterm-256color
