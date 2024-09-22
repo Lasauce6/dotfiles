@@ -2,6 +2,10 @@
 [[ $- != *i* ]] && return
 # PS1='[\u@\h \W]\$ '
 
+# Setup colors
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+
 # -----------------------------------------------------
 # ALIASES
 # -----------------------------------------------------
@@ -9,7 +13,7 @@
 alias c='clear'
 alias nf='neofetch'
 alias pf='pfetch'
-alias ls='exa'
+alias ls='ls -G'
 alias shutdown='systemctl poweroff'
 alias v='nvim'
 alias ts='~/dotfiles/scripts/snapshot.sh'
@@ -54,19 +58,12 @@ eval "$(starship init zsh)"
 # -----------------------------------------------------
 # PYWAL
 # -----------------------------------------------------
-cat ~/.cache/wal/sequences
+# cat ~/.cache/wal/sequences
 
 # -----------------------------------------------------
 # PFETCH if on wm
 # -----------------------------------------------------
-echo ""
-if [[ $(tty) == *"pts"* ]]; then
-    pfetch
-else
-    if [ -f /bin/hyprctl ]; then
-        echo "Start Hyprland with command Hyprland"
-    fi
-fi
+pfetch
 
 TERM=xterm-256color
 
@@ -87,3 +84,7 @@ bindkey -e
 
 # Created by `pipx` on 2023-12-15 14:31:54
 export PATH="$PATH:/home/lasauce6/.local/bin"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
