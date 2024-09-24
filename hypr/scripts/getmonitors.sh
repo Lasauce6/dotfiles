@@ -12,8 +12,8 @@ output=$(hyprctl monitors | grep Monitor)
 monitors=()
 
 while read -r line; do
-    monitor_name=$(echo "$line" | awk -F'Monitor | \\(ID [0-9]+\\):' '{print $2}')
-    monitors+=("$monitor_name")
+	monitor_name=$(echo "$line" | awk -F'Monitor | \\(ID [0-9]+\\):' '{print $2}')
+	monitors+=("$monitor_name")
 done <<< "$output"
 
 echo "${monitors[@]}"

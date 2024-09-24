@@ -66,3 +66,8 @@ opt.list = true
 vim.api.nvim_command([[set listchars=tab:\|\ ,trail:·]])
 vim.api.nvim_command([[set lcs+=space:·]])
 opt.listchars:append('eol:↴')
+
+-- 42 Header
+vim.api.nvim_command([[let g:user42 = 'rbaticle']])
+vim.api.nvim_command([[let g:mail42 = 'rbaticle@student.42.fr']])
+vim.keymap.set('n', '<leader>h', ":Stdheader<CR>", { desc = "Set 42 Header" })

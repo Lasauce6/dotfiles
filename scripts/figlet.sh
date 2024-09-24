@@ -17,7 +17,7 @@ EOF
 read -p "Enter the text for ascii encoding: " mytext
 
 if [ -f ~/figlet.txt ]; then
-    touch ~/figlet.txt
+	touch ~/figlet.txt
 fi
 
 echo "cat <<\"EOF\"" > ~/figlet.txt

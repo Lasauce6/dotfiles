@@ -113,3 +113,11 @@ cmp.event:on(
 	'confirm_done',
 	cmp_autopairs.on_confirm_done()
 )
+
+cmp.setup.cmdline(':', {
+	sources = cmp.config.sources({
+		{ name = 'path' }
+	}, {
+			{ name = 'cmdline' }
+		})
+})

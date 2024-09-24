@@ -10,30 +10,30 @@
 
 case $1 in
 
-    # Load wallpaper from .cache of last session 
-    "init")
-        if [ -f ~/.cache/wallpaper/current_wallpaper.jpg ]; then
-            rm ~/.cache/wal/schemes/*current_wallpaper_jpg*
-            wal -q -i ~/.cache/wallpaper/current_wallpaper.jpg
-        else
-            wal -q -i ~/dotfiles/wallpaper/
-        fi
-    ;;
+	# Load wallpaper from .cache of last session 
+	"init")
+	if [ -f ~/.cache/wallpaper/current_wallpaper.jpg ]; then
+		rm ~/.cache/wal/schemes/*current_wallpaper_jpg*
+		wal -q -i ~/.cache/wallpaper/current_wallpaper.jpg
+	else
+		wal -q -i ~/dotfiles/wallpaper/
+	fi
+	;;
 
-    # Select wallpaper with rofi
-    "select")
-        selected=$(ls -1 ~/dotfiles/wallpaper | grep "jpg" | rofi -dmenu -replace -config ~/dotfiles/rofi/config-wallpaper.rasi)
-        if [ ! "$selected" ]; then
-            echo "No wallpaper selected"
-            exit
-        fi
-        wal -q -i ~/dotfiles/wallpaper/$selected
-    ;;
+	# Select wallpaper with rofi
+	"select")
+	selected=$(ls -1 ~/dotfiles/wallpaper | grep "jpg" | rofi -dmenu -replace -config ~/dotfiles/rofi/config-wallpaper.rasi)
+	if [ ! "$selected" ]; then
+		echo "No wallpaper selected"
+		exit
+	fi
+	wal -q -i ~/dotfiles/wallpaper/$selected
+	;;
 
-    # Randomly select wallpaper 
-    *)
-        wal -q -i ~/dotfiles/wallpaper/
-    ;;
+	# Randomly select wallpaper 
+	*)
+	wal -q -i ~/dotfiles/wallpaper/
+	;;
 
 esac
 
@@ -66,11 +66,11 @@ transition_type="wipe"
 # transition_type="random"
 
 swww img $wallpaper \
-    --transition-bezier .43,1.19,1,.4 \
-    --transition-fps=60 \
-    --transition-type=$transition_type \
-    --transition-duration=0.7 \
-    --transition-pos "$( hyprctl cursorpos )"
+	--transition-bezier .43,1.19,1,.4 \
+	--transition-fps=60 \
+	--transition-type=$transition_type \
+	--transition-duration=0.7 \
+	--transition-pos "$( hyprctl cursorpos )"
 
 # ----------------------------------------------------- 
 # Send notification

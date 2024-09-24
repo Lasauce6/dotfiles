@@ -69,9 +69,9 @@ cat ~/.cache/wal/sequences
 # -----------------------------------------------------
 echo ""
 if [[ $(tty) == *"pts"* ]]; then
-    pfetch
+	pfetch
 else
-    if [ -f /bin/hyprctl ]; then
-        echo "Start Hyprland with command Hyprland"
-    fi
+	if [ -f /bin/hyprctl ]; then
+		echo "Start Hyprland with command Hyprland"
+	fi
 fi

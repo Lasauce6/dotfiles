@@ -41,8 +41,6 @@ require('which-key').add {
 	{ "<leader>d_", hidden = true },
 	{ "<leader>g", group = "[G]it" },
 	{ "<leader>g_", hidden = true },
-	{ "<leader>h", group = "More git" },
-	{ "<leader>h_", hidden = true },
 	{ "<leader>r", group = "[R]ename" },
 	{ "<leader>r_", hidden = true },
 	{ "<leader>s", group = "[S]earch" },

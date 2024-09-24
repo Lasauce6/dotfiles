@@ -65,7 +65,7 @@ eval "$(starship init zsh)"
 # PYWAL
 # -----------------------------------------------------
 
-# cat ~/.cache/wal/sequences
+cat ~/.cache/wal/sequences
 
 # -----------------------------------------------------
 # PFETCH if on wm

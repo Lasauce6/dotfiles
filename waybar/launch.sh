@@ -19,7 +19,7 @@ sleep 0.2
 host=$(. ~/dotfiles/scripts/checkplatform.sh)
 
 if [ $host == 3 ]; then
-    waybar -c ~/dotfiles/waybar/theme/deskConfig -s ~/dotfiles/waybar/theme/style.css &
+	waybar -c ~/dotfiles/waybar/theme/deskConfig -s ~/dotfiles/waybar/theme/style.css &
 else
-    waybar -c ~/dotfiles/waybar/theme/laptConfig -s ~/dotfiles/waybar/theme/style.css &
+	waybar -c ~/dotfiles/waybar/theme/laptConfig -s ~/dotfiles/waybar/theme/style.css &
 fi
