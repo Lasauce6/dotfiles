@@ -58,7 +58,7 @@ mainbox {
     spacing:                      0px;
     margin:                       0px;
     background-color:             @background;
-    background-image:             url("~/.cache/wallpaper/current_wallpaper.jpg", height);
+    background-image:             url("~/.cache/current_wallpaper.jpg", height);
     children:                     ["listbox"];
 }
 

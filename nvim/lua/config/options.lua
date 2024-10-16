@@ -71,3 +71,6 @@ opt.listchars:append('eol:↴')
 vim.api.nvim_command([[let g:user42 = 'rbaticle']])
 vim.api.nvim_command([[let g:mail42 = 'rbaticle@student.42.fr']])
 vim.keymap.set('n', '<leader>h', ":Stdheader<CR>", { desc = "Set 42 Header" })
+
+-- Setup theme
+vim.cmd[[colorscheme cyberdream]]

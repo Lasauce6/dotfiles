@@ -5,258 +5,192 @@
 // |_|  |_|\___/ \__,_|\__,_|_|\___||___/ 
 //                                        
 //  
-// by Stephan Raabe (2023) 
 // ----------------------------------------------------- 
 //
 {
-    // Workspaces
-    "hyprland/workspaces" : {
-        "on-click": "activate",
-        "active-only": false,
-        "format-icons": {
+	// Workspaces
+	"hyprland/workspaces" : {
+		"on-click": "activate",
+		"active-only": false,
+		"format-icons": {
 			"urgent": "",
 			"active": "",
 			"default": ""
-        },
-        "persistent_workspaces": {
-             "*": 5
-        }       
-    },
+		},
+		"persistent_workspaces": {
+			"*": 5
+		},
+		"on-scroll-up": "hyprctl dispatch workspace e+1",
+		"on-scroll-down": "hyprctl dispatch workspace e-1"
+	},
 
-    // Taskbar
-    "wlr/taskbar": {
-        "format": "{icon}",
-        "icon-size": 18,
-        "tooltip-format": "{title}",
-        "on-click": "activate",
-        "on-click-middle": "close",
-        "ignore-list": [
-           "Alacritty"
-        ],
-        "app_ids-mapping": {
-            "firefoxdeveloperedition": "firefox-developer-edition"
-        },
-        "rewrite": {
-            "Firefox Web Browser": "Firefox",
-            "Foot Server": "Terminal"
-        }
-    },
+	// Taskbar
+	"wlr/taskbar": {
+		"format": "{icon}",
+		"icon-size": 18,
+		"tooltip-format": "{title}",
+		"on-click": "activate",
+		"on-click-middle": "close",
+		"app_ids-mapping": {
+			"firefoxdeveloperedition": "firefox-developer-edition"
+		},
+		"rewrite": {
+			"Firefox Web Browser": "Firefox",
+			"Foot Server": "Terminal"
+		}
+	},
 
-    // Hyprland Window
-    "hyprland/window": {
-        "rewrite": {
-            "(.*) - Brave": "$1",
-            "(.*) - Chromium": "$1",
-            "(.*) - Brave Search": "$1",
-            "(.*) - Outlook": "$1",
-            "(.*) Microsoft Teams": "$1"
-        },
-        "separate-outputs": true
-    },
-    
-    // Cliphist
-    "custom/cliphist": {
-        "format": "",
-        "on-click": "sleep 0.1 && ~/dotfiles/scripts/cliphist.sh",
-        "on-click-right": "sleep 0.1 && ~/dotfiles/scripts/cliphist.sh d",
-        "on-click-middle": "sleep 0.1 && ~/dotfiles/scripts/cliphist.sh w",
-        "tooltip": false
-    },
+	// Hyprland Window
+	"hyprland/window": {
+		"separate-outputs": true
+	},
 
-    // Updates Count
-    "custom/updates": {
-        "format": "  {}",
-        "tooltip-format": "{}",
-        "escape": true,
-        "return-type": "json",       
-        "exec": "~/dotfiles/scripts/updates.sh",
-        "restart-interval": 60,
-        "on-click": "alacritty -e ~/dotfiles/scripts/installupdates.sh",
-        "tooltip": false
-    },
-    
-    // Wallpaper
-    "custom/wallpaper": {
-        "format": "",
-        "on-click": "~/dotfiles/scripts/wallpaper-swww.sh",
-        "on-click-right": "~/dotfiles/scripts/updatewal-swww.sh",
-        "tooltip": false
-    },
+	// Cliphist
+	"custom/cliphist": {
+		"format": "",
+		"on-click": "sleep 0.1 && ~/dotfiles/scripts/cliphist.sh",
+		"on-click-right": "sleep 0.1 && ~/dotfiles/scripts/cliphist.sh d",
+		"on-click-middle": "sleep 0.1 && ~/dotfiles/scripts/cliphist.sh w",
+		"tooltip": false
+	},
 
-    // Waybar Themes
-    "custom/waybarthemes": {
-        "format": "",
-        "on-click": "~/dotfiles/waybar/themeswitcher.sh",
-        "tooltip": false
-    },
+	// Updates Count
+	"custom/updates": {
+		"format": "  {}",
+		"tooltip-format": "{}",
+		"escape": true,
+		"return-type": "json",       
+		"exec": "~/dotfiles/scripts/updates.sh",
+		"restart-interval": 60,
+		"on-click": "alacritty -e ~/dotfiles/scripts/installupdates.sh",
+		"tooltip": false
+	},
 
-    // Filemanager Launcher
-    "custom/filemanager": {
-        "format": "",
-        "on-click": "~/dotfiles/scripts/filemanager.sh",
-        "tooltip": false
-    },
+	// Power Menu
+	"custom/exit": {
+		"format": "",
+		"on-click": "wlogout",
+		"tooltip": false
+	},
 
-    // Teams Launcher
-    "custom/teams": {
-        "format": "",
-        "on-click": "chromium --app=https://teams.microsoft.com/go",
-        "tooltip": false
-    },
+	// Keyboard State
+	"keyboard-state": {
+		"numlock": true,
+		"capslock": true,
+		"format": "{name} {icon}",
+		"format-icons": {
+			"locked": "",
+			"unlocked": ""
+		}
+	},
 
-    // Brave Launcher
-    "custom/brave": {
-       "format": "",
-        "on-click": "brave",
-        "tooltip": false
-    },
+	// System tray
+	"tray": {
+		// "icon-size": 21,
+		"spacing": 10
+	},    
 
-    // ChatGPT Launcher
-    "custom/chatgpt": {
-        "format": "",
-        "on-click": "brave --app=https://chat.openai.com",
-        "tooltip": false
-    },
+	// Idle Inhibitor
+	"idle_inhibitor": {
+		"format": "{icon}",
+		"format-icons": {
+			"activated": "",
+			"deactivated": ""
+		}
+	},
 
-    // Windows VM
-    "custom/windowsvm": {
-        "format": "",
-        "on-click": "~/dotfiles/scripts/launchvm.sh",
-        "tooltip": false
-    },
+	// Clock
+	"clock": {
+		// "timezone": "America/New_York",
+		"timezone": "Europe/Paris",
+		"format": "{:%H:%M:%S}",
+		"interval": 1,
+		"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+		"format-alt": "{:%d/%m/%Y}"
+	},
 
-    // Rofi Application Launcher
-    "custom/appmenu": {
-        "format": "Apps",
-        "on-click": "~/dotfiles/scripts/applauncher.sh",
-        "tooltip": false
-    },
+	// CPU
+	"cpu": {
+		"format": "/ C {usage}% ",
+		"on-click": "alacritty -e htop"
+	},
 
-    // Power Menu
-    "custom/exit": {
-        "format": "",
-        "on-click": "wlogout",
-        "tooltip": false
-    },
+	// Memory
+	"memory": {
+		"format": "/ M {}% ",
+		"on-click": "alacritty -e htop"
+	},
 
-    // Keyboard State
-    "keyboard-state": {
-        "numlock": true,
-        "capslock": true,
-        "format": "{name} {icon}",
-        "format-icons": {
-            "locked": "",
-            "unlocked": ""
-        }
-    },
+	// Harddisc space used
+	"disk": {
+		"interval": 30,
+		"format": "   {percentage_used}% ",
+		"path": "/",
+		"on-click": "alacritty -e htop"
+	}, 
 
-    // System tray
-    "tray": {
-        // "icon-size": 21,
-        "spacing": 10
-    },    
+	// Network
+	"network": {
+		"format": "{ifname}",
+		"format-wifi": "    {signalStrength}%",
+		"format-ethernet": "  {ipaddr}",
+		"format-disconnected": "", //An empty format will hide the module.
+		"tooltip-format": " {ifname} via {gwaddri}",
+		"tooltip-format-wifi": "    {essid} ({signalStrength}%)",
+		"tooltip-format-ethernet": "  {ifname} ({ipaddr}/{cidr})",
+		"tooltip-format-disconnected": "Disconnected",
+		"max-length": 50
+	},
 
-    // Idle Inhibitor
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        }
-    },
+	// Battery
+	"battery": {
+		"states": {
+			// "good": 95,
+			"warning": 35,
+			"critical": 25
+		},
+		"format": "{icon}   {capacity}%",
+		"format-charging": "  {capacity}%",
+		"format-plugged": "  {capacity}%",
+		"format-alt": "{icon}  {time}",
+		// "format-good": "", // An empty format will hide the module
+		// "format-full": "",
+		"format-icons": [" ", " ", " ", " ", " "]
+	},
 
-    // Clock
-    "clock": {
-        // "timezone": "America/New_York",
-        "timezone": "Europe/Paris",
-        "format": "{:%H:%M:%S}",
-        "interval": 1,
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%d/%m/%Y}"
-    },
+	// Pulseaudio
+	"pulseaudio": {
+		// "scroll-step": 1, // %, can be a float
+		"format": "{icon} {volume}%",
+		"format-bluetooth": "{volume}% {icon}  {format_source}",
+		"format-bluetooth-muted": "  {icon}  {format_source}",
+		"format-muted": "  {format_source}",
+		"format-source": "{volume}% ",
+		"format-source-muted": "",
+		"format-icons": {
+			"headphone": "",
+			"hands-free": "",
+			"headset": "",
+			"phone": "",
+			"portable": "",
+			"car": "",
+			"default": [" ", "  ", "  "]
+		},
+		"on-click": "pavucontrol"
+	},
 
-    // CPU
-    "cpu": {
-        "format": "/ C {usage}% ",
-        "on-click": "alacritty -e htop"
-    },
+	// Bluetooth
+	"bluetooth": {
+		"format-disabled": "",
+		"format-off": "",
+		"interval": 30,
+		"on-click": "blueman-manager"
+	},
 
-    // Memory
-    "memory": {
-        "format": "/ M {}% ",
-        "on-click": "alacritty -e htop"
-    },
-
-    // Harddisc space used
-    "disk": {
-        "interval": 30,
-        "format": "   {percentage_used}% ",
-        "path": "/",
-        "on-click": "alacritty -e htop"
-    }, 
-    
-    // Network
-    "network": {
-        "format": "{ifname}",
-        "format-wifi": "   {signalStrength}%",
-        "format-ethernet": "  {ipaddr}",
-        "format-disconnected": "", //An empty format will hide the module.
-        "tooltip-format": " {ifname} via {gwaddri}",
-        "tooltip-format-wifi": "   {essid} ({signalStrength}%)",
-        "tooltip-format-ethernet": "  {ifname} ({ipaddr}/{cidr})",
-        "tooltip-format-disconnected": "Disconnected",
-        "max-length": 50
-    },
-
-    // Battery
-    "battery": {
-        "states": {
-            // "good": 95,
-            "warning": 35,
-            "critical": 25
-        },
-        "format": "{icon}   {capacity}%",
-        "format-charging": "  {capacity}%",
-        "format-plugged": "  {capacity}%",
-        "format-alt": "{icon}  {time}",
-        // "format-good": "", // An empty format will hide the module
-        // "format-full": "",
-        "format-icons": [" ", " ", " ", " ", " "]
-    },
-
-    // Pulseaudio
-    "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "{icon} {volume}%",
-        "format-bluetooth": "{volume}% {icon}  {format_source}",
-        "format-bluetooth-muted": " {icon}  {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", " ", " "]
-        },
-        "on-click": "pavucontrol"
-    },
-
-    // Bluetooth
-    "bluetooth": {
-        "format-disabled": "",
-        "format-off": "",
-        "interval": 30,
-        "on-click": "blueman-manager"
-    },
-
-    // Other
-    "user": {
-        "format": "{user}",
-        "interval": 60,
-        "icon": false,
-    }
+	// Other
+	"user": {
+		"format": "{user}",
+		"interval": 60,
+		"icon": false,
+	}
 }

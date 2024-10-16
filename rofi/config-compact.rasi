@@ -5,7 +5,6 @@
 # |  _ < (_) |  _| | 
 # |_| \_\___/|_| |_| 
 #                    
-# by Stephan Raabe (2023) 
 # ----------------------------------------------------- 
 */
 
@@ -16,15 +15,14 @@ configuration {
     show-icons:                 false;
     icon-theme:                 "kora";
     display-drun:               "APPS";
-    display-run:		"RUN";
+    display-run:                "RUN";
     display-filebrowser:        "FILES";
     display-window:             "WINDOW";
-	hover-select:               true;
+    hover-select:               true;
     me-select-entry:            "";
     me-accept-entry:            "MousePrimary";
     drun-display-format:        "{name}";
     window-format:              "{w} · {c} · {t}";
-    
 }
 
 /* ---- Load pywal colors (custom wal template) ---- */
@@ -62,25 +60,12 @@ mainbox {
     children:                     ["listbox"];
 }
 
-/* ---- Imagebox ---- */
-imagebox {
-    padding:                      18px;
-    background-color:             transparent;
-    orientation:                  vertical;
-    children:                     [ "inputbar", "dummy", "mode-switcher" ];
-}
-
 /* ---- Listbox ---- */
 listbox {
     spacing:                     20px;
     background-color:            transparent;
     orientation:                 vertical;
     children:                    [ "inputbar", "message", "listview" ];
-}
-
-/* ---- Dummy ---- */
-dummy {
-    background-color:            transparent;
 }
 
 /* ---- Inputbar ---- */
@@ -110,28 +95,6 @@ entry {
     cursor:                       text;
     placeholder:                  "Search";
     placeholder-color:            inherit;
-}
-
-/* ---- Mode Switcher ---- */
-mode-switcher{
-    enabled:                      true;
-    spacing:                      20px;
-    background-color:             transparent;
-    text-color:                   @foreground;
-}
-
-button {
-    padding:                      10px;
-    border-radius:                10px;
-    background-color:             @background;
-    text-color:                   inherit;
-    cursor:                       pointer;
-    border:                       0px;
-}
-
-button selected {
-    background-color:             @color11;
-    text-color:                   @foreground;
 }
 
 /* ---- Listview ---- */
