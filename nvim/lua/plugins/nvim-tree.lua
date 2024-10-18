@@ -19,7 +19,9 @@ return
 			},
 			filters = {
 				dotfiles = false,
-				custom = {"^\\.git"},
+				git_clean = false,
+				no_buffer = false,
+				custom = {'node_modules'},
 			},
 		}
 	end,
