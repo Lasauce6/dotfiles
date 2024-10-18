@@ -74,3 +74,6 @@ vim.keymap.set('n', '<leader>h', ":Stdheader<CR>", { desc = "Set 42 Header" })
 
 -- Setup theme
 vim.cmd[[colorscheme cyberdream]]
+
+-- Autoupdate window on size change
+vim.api.nvim_command('autocmd VimResized * wincmd =')

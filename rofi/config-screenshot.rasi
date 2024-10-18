@@ -147,7 +147,7 @@ listview {
     fixed-height:                 true;
     fixed-columns:                true;
     spacing:                      0px;
-    padding:                      10px;
+    padding:                      0px;
     margin:                       0px;
     background-color:             @background;
     border:0px;
@@ -157,11 +157,9 @@ listview {
 element {
     enabled:                      true;
     padding:                      10px;
-    margin:                       5px;
+    margin:                       0px;
     cursor:                       pointer;
     background-color:             @background;
-    border-radius:                10px;
-    border:                       2px;
 }
 
 element normal.normal {

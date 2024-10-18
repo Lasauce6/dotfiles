@@ -5,9 +5,7 @@
  *   \ V  V / (_| | |_| | |_) | (_| | |     ___) | |_| |_| | |  __/ 
  *    \_/\_/ \__,_|\__, |_.__/ \__,_|_|    |____/ \__|\__, |_|\___| 
  *                 |___/                              |___/         
- *  
- * ----------------------------------------------------- 
-*/
+ * ----------------------------------------------------- */
 
 /* -----------------------------------------------------
  * Import Pywal colors 
@@ -128,7 +126,7 @@ window#waybar.empty #window {
 	background: @backgrounddark;
 	background-color: @backgrounddark;
 	margin: 6px 15px 6px 14px;
-	padding:0px;
+	padding: 0px;
 	padding: 2px 3px 1px 3px;
 	border-radius: 15px;
 	font-weight: normal;
@@ -144,14 +142,11 @@ window#waybar.empty #window {
 }
 
 #taskbar {
-	background: @backgroundlight;
-	margin: 8px 5px 8px 5px;
-	padding:0px;
-	border-radius: 15px;
+	margin: 8px 5px 8px 14px;
+	padding: 0px;
 	font-weight: normal;
 	font-style: normal;
 	opacity:0.8;
-	border: 3px solid @backgroundlight;
 }
 
 #taskbar button {
@@ -196,8 +191,9 @@ window#waybar.empty #window {
 
 #custom-browser, 
 #custom-cliphist {
-	margin-right: 10px;
-	font-size: 20px;
+	margin-right: 6px;
+	margin-left: 6px;
+	font-size: 16px;
 	font-weight: bold;
 	opacity: 0.8;
 	color: @iconcolor;

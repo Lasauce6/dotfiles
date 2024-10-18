@@ -4,7 +4,6 @@
 //   \ V  V / (_| | |_| | |_) | (_| | |    
 //    \_/\_/ \__,_|\__, |_.__/ \__,_|_|    
 //                 |___/                   
-//  
 // ----------------------------------------------------- 
 //
 [{
@@ -26,10 +25,8 @@
 	// Modules Left
 	"modules-left": [
 		"tray",
-		"custom/wallpaper",
-		"custom/chatgpt",          
+		"custom/cliphist",
 		"wlr/taskbar",
-		"group/quicklinks",
 		"hyprland/window"
 	],
 
@@ -45,21 +42,11 @@
 		"bluetooth",
 		"battery",
 		"group/hardware",
-		"custom/cliphist",
 		"network",
 		"idle_inhibitor",
 		"custom/exit",
 		"clock"
 	],
-
-	// Group Quicklinks
-	"group/quicklinks": {
-		"orientation": "horizontal",
-		"modules": [
-			"custom/teams",
-			"custom/brave"
-		]
-	},
 
 	// Group Hardware
 	"group/hardware": {
@@ -103,16 +90,7 @@
 		"clock"
 	],
 
-	// Group Quicklinks
-	"group/quicklinks": {
-		"orientation": "horizontal",
-		"modules": [
-			"custom/filemanager",
-			"custom/browser"
-		]
-	},
-
-	// Group Hardware
+// Group Hardware
 	"group/hardware": {
 		"orientation": "horizontal",
 		"modules": [

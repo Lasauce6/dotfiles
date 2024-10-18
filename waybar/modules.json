@@ -4,9 +4,8 @@
 // | |  | | (_) | (_| | |_| | |  __/\__ \ 
 // |_|  |_|\___/ \__,_|\__,_|_|\___||___/ 
 //                                        
-//  
 // ----------------------------------------------------- 
-//
+
 {
 	// Workspaces
 	"hyprland/workspaces" : {
@@ -88,7 +87,7 @@
 	"tray": {
 		// "icon-size": 21,
 		"spacing": 10
-	},    
+	},
 
 	// Idle Inhibitor
 	"idle_inhibitor": {
@@ -101,7 +100,6 @@
 
 	// Clock
 	"clock": {
-		// "timezone": "America/New_York",
 		"timezone": "Europe/Paris",
 		"format": "{:%H:%M:%S}",
 		"interval": 1,
