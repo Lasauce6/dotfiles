@@ -9,7 +9,7 @@ return
 					"c", "cpp", "go",
 					"lua", "python", "rust",
 					"tsx", "javascript", "typescript",
-					"vimdoc", "vim", "bash"
+					"vimdoc", "vim", "bash", "php", "html"
 				},
 			sync_install = false,
 			highlight = { enable = true },
