@@ -190,5 +190,12 @@
 		"format": "{user}",
 		"interval": 60,
 		"icon": false,
+	},
+
+	// Swaync
+	"custom/notifications": {
+		"format": "",
+		"on-click": "swaync-client -t -sw",
+		"tooltip-format": "Notifications Widgets",
 	}
 }

@@ -7,11 +7,8 @@
 #                                                      
 # ----------------------------------------------------- 
 
-DIR="$HOME/Images/screenshots/"
-NAME="screenshot_$(date +%d%m%Y_%H%M%S).png"
-
 option2="Selected area"
-option3="Fullscreen (delay 3 sec)"
+option3="Window"
 
 options="$option2\n$option3"
 
@@ -19,12 +16,7 @@ choice=$(echo -e "$options" | rofi -dmenu -replace -config ~/dotfiles/rofi/confi
 
 case $choice in
 	$option2)
-		grim -g "$(slurp)" - | swappy -f -
-		notify-send "Screenshot created" "Mode: Selected area"
-		;;
+		hyprshot -m region ;;
 	$option3)
-		sleep 3
-		grim - | swappy -f -
-		notify-send "Screenshot created" "Mode: Fullscreen"
-		;;
+		hyprshot -m window ;;
 esac

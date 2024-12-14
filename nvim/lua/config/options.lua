@@ -83,3 +83,10 @@ opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-bli
 
 -- Keymap to toogle nvim-tree
 vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', { desc = 'Toogle Nvim Tree' })
+
+-- Option for blade files
+vim.filetype.add({
+	pattern = {
+		[".*%.blade%.php"] = "blade",
+	},
+})

@@ -40,13 +40,15 @@
 		"pulseaudio",
 		"group/hardware",
 		"network",
+		"idle_inhibitor",
+		"custom/notifications",
 		"custom/exit",
 		"clock"
 	],
 
 	// Group Hardware
 	"group/hardware": {
-		"orientation": "horizontal",
+"orientation": "horizontal",
 		"modules": [
 			"disk",
 			"cpu",
@@ -83,6 +85,7 @@
 	// Modules Right
 	"modules-right": [
 		"custom/updates",
+		// "keyboard-state",
 		"pulseaudio",
 		"clock"
 	],

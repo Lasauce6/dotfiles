@@ -155,23 +155,6 @@ window#waybar.empty #window {
 	padding: 0px 5px 0px 5px;
 }
 
-/* -----------------------------------------------------
- * Idle inhibitor
- * ----------------------------------------------------- */
-
-#idle_inhibitor {
-	background: @backgroundlight;
-	background-color: @backgroundlight;
-	margin: 6px 15px 6px 0px;
-	padding:0px;
-	padding: 2px 3px 1px 3px;
-	border-radius: 15px;
-	font-weight: normal;
-	font-style: normal;
-	opacity:0.8;
-	border: 3px solid @backgroundlight;
-}
-
 
 /* -----------------------------------------------------
  * Modules
@@ -332,6 +315,34 @@ window#waybar.empty #window {
 #network.wifi {
 	background-color: @backgroundlight;
 	color: @textcolor2;
+}
+
+/* -----------------------------------------------------
+ * Idle inhibitor
+ * ----------------------------------------------------- */
+
+#idle_inhibitor {
+	background-color: @backgroundlight;
+	font-size: 16px;
+	color: @textcolor2;
+	border-radius: 15px;
+	padding: 2px 5px 0px 5px;
+	margin: 8px 15px 8px 0px;
+	opacity:0.8;
+}
+
+/* -----------------------------------------------------
+ * Notifications
+ * ----------------------------------------------------- */
+
+#custom-notifications {
+	background-color: @backgroundlight;
+	font-size: 16px;
+	color: @textcolor2;
+	border-radius: 15px;
+	padding: 2px 13px 0px 6px;
+	margin: 8px 15px 8px 0px;
+	opacity:0.8;
 }
 
 /* -----------------------------------------------------
