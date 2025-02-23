@@ -90,3 +90,20 @@ vim.filetype.add({
 		[".*%.blade%.php"] = "blade",
 	},
 })
+
+-- Toggle norminette
+if not vim.g.norminette_enabled then
+	vim.g.norminette_enabled = true
+end
+
+local function toggle_norminette()
+	if vim.g.norminette_enabled then
+		vim.cmd('NorminetteDisable')
+		vim.g.norminette_enabled = false
+	else
+		vim.cmd('NorminetteEnable')
+		vim.g.norminette_enabled = true
+	end
+end
+
+vim.keymap.set('n', '<leader>n', toggle_norminette, { desc = "Toggle Norminette" })
