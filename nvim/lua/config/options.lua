@@ -90,3 +90,32 @@ vim.filetype.add({
 		[".*%.blade%.php"] = "blade",
 	},
 })
+
+-- Fonction pour activer/désactiver le plugin norminette42
+function ToggleNorminettePlugin()
+	local lazy = require("lazy")
+	local plugins = lazy.plugins()
+	local plugin = plugins["norminette42.nvim"]
+	if plugin then
+		plugin._.enabled = not plugin._.enabled
+		vim.cmd("Lazy sync")
+		print("Plugin norminette42 " .. (plugin._.enabled and "activé" or "désactivé"))
+	else
+		print("Plugin norminette42 non trouvé")
+	end
+end
+
+-- Keymap pour activer/désactiver le plugin norminette42
+vim.keymap.set('n', '<leader>n', ':lua ToggleNorminettePlugin()<CR>', { desc = 'Toggle Norminette Plugin' })
+
+
+-- Fonction pour lister tous les plugins chargés (via lazy.stats)
+function ListPlugins()
+    local lazy = require("lazy")
+    local stats = lazy.stats()
+    print("Liste des plugins chargés :")
+    for _, plugin in ipairs(stats.loaded) do
+        print("- " .. plugin.name)
+    end
+end
+
