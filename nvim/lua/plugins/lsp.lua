@@ -8,6 +8,5 @@ return
 	'hrsh7th/nvim-cmp',
 	'L3MON4D3/LuaSnip',
 	'saadparwaiz1/cmp_luasnip',
-	"williamboman/mason.nvim",
-	"williamboman/mason-lspconfig.nvim"
+	"mason-org/mason.nvim",
 }
