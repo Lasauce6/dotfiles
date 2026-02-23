@@ -47,4 +47,6 @@ require('which-key').add {
 	{ "<leader>s_", hidden = true },
 	{ "<leader>w", group = "[W]orkspace" },
 	{ "<leader>w_", hidden = true },
+	{ "<leader>m", group = "[M]arkdown"},
+	{ "<leader>m_", hidden = true},
 }

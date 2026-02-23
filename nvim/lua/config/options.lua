@@ -90,3 +90,7 @@ vim.filetype.add({
 		[".*%.blade%.php"] = "blade",
 	},
 })
+
+-- Markdown keymap
+vim.keymap.set('n', '<leader>mt', ':Markview toggle<CR>', { desc = '[T]oggle [M]arkdown preview globally'})
+vim.keymap.set('n', '<leader>ms', ':Markview splitToggle<CR>', { desc = '[S]plit toggle [M]arkdown preview'})
