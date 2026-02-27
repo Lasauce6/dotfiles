@@ -19,7 +19,7 @@ return
 			},
 			filters = {
 				dotfiles = false,
-				git_clean = false,
+				git_clean = true,
 				no_buffer = false,
 				custom = {'node_modules'},
 			},
