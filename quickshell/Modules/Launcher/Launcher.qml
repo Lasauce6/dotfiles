@@ -276,12 +276,16 @@ NPanel {
 						text: searchText
 						inputMaxWidth: 100000
 					// Tune vertical centering on inner input
-					Component.onCompleted: {
-						searchInputBox.inputItem.font.pointSize = Style.fontSizeL * scaling
-						searchInputBox.inputItem.verticalAlignment = TextInput.AlignVCenter
-						// Ensure focus when launcher first appears
-						root.focusSearchInput()
-					}
+				Component.onCompleted: {
+					searchInputBox.inputItem.font.pointSize = Style.fontSizeL * scaling
+					searchInputBox.inputItem.verticalAlignment = TextInput.AlignVCenter
+					// Ensure focus when launcher first appears - use callLater to ensure inputItem is ready
+					Qt.callLater(() => {
+						if (searchInputBox && searchInputBox.inputItem) {
+							searchInputBox.inputItem.forceActiveFocus()
+						}
+					})
+				}
 					onTextChanged: {
 						if (searchText !== text) {
 							searchText = text
