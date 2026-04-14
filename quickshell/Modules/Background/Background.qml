@@ -49,8 +49,24 @@ Variants {
 			Component.onCompleted: {
 				fillMode = WallpaperService.getFillModeUniform()
 
+				// Ensure WallpaperService cache is initialized
+				if (!WallpaperService.currentWallpapers[modelData.name]) {
+					Logger.log("Background", "Cache not initialized yet for", modelData.name, "- initializing from Settings")
+					var monitors = Settings.data.wallpaper.monitors || []
+					for (var i = 0; i < monitors.length; i++) {
+						if (monitors[i].name && monitors[i].wallpaper) {
+							WallpaperService.currentWallpapers[monitors[i].name] = monitors[i].wallpaper
+						}
+					}
+				}
+
 				var path = modelData ? WallpaperService.getWallpaper(modelData.name) : ""
-				setWallpaperImmediate(path)
+				if (path) {
+					Logger.log("Background", "Initial wallpaper for", modelData.name, ":", path)
+					setWallpaperImmediate(path)
+				} else {
+					Logger.log("Background", "No wallpaper cached for", modelData.name, "- waiting for wallpaper service")
+				}
 			}
 
 			Connections {
@@ -70,6 +86,23 @@ Variants {
 						// Set wallpaper immediately on startup
 						futureWallpaper = path
 						debounceTimer.restart()
+					}
+				}
+				function onWallpaperListChanged(screenName, count) {
+					// When wallpaper list changes, ensure we have a wallpaper applied
+					if (screenName === modelData.name && currentWallpaper.source === "" && count > 0) {
+						var cachedWallpaper = WallpaperService.getWallpaper(screenName)
+						if (cachedWallpaper) {
+							Logger.log("Background", "Applying cached wallpaper for", screenName)
+							setWallpaperImmediate(cachedWallpaper)
+						} else if (WallpaperService.getWallpapersList(screenName).length > 0) {
+							// If no cached wallpaper, pick the first available one
+							var wallpapers = WallpaperService.getWallpapersList(screenName)
+							if (wallpapers.length > 0) {
+								Logger.log("Background", "Applying first available wallpaper for", screenName)
+								setWallpaperImmediate(wallpapers[0])
+							}
+						}
 					}
 				}
 			}

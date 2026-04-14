@@ -12,11 +12,28 @@ Singleton {
 	Component.onCompleted: {
 		Logger.log("Wallpaper", "Service started")
 
+		// Defer cache initialization until Settings is loaded
+		if (Settings.isLoaded) {
+			initializeCache()
+		} else {
+			var settingsLoadedConnection
+			settingsLoadedConnection = Settings.onIsLoadedChanged.connect(function() {
+				if (Settings.isLoaded) {
+					initializeCache()
+					settingsLoadedConnection.disconnect()
+				}
+			})
+		}
+	}
+
+	function initializeCache() {
+		Logger.log("Wallpaper", "Initializing cache from Settings")
 		// Initialize cache from Settings on startup
 		var monitors = Settings.data.wallpaper.monitors || []
 		for (var i = 0; i < monitors.length; i++) {
 			if (monitors[i].name && monitors[i].wallpaper) {
 				currentWallpapers[monitors[i].name] = monitors[i].wallpaper
+				Logger.log("Wallpaper", "Cached wallpaper for", monitors[i].name, ":", monitors[i].wallpaper)
 			}
 		}
 	}
@@ -305,6 +322,12 @@ Singleton {
 						var randomIndex = Math.floor(Math.random() * wallpaperList.length)
 						var randomPath = wallpaperList[randomIndex]
 						changeWallpaper(screenName, randomPath)
+					} else {
+						// List not yet loaded, use cached wallpaper if available
+						var cached = currentWallpapers[screenName]
+						if (cached) {
+							Logger.log("Wallpaper", "Using cached wallpaper for", screenName, "until list loads")
+						}
 					}
 				}
 			} else {
@@ -315,6 +338,12 @@ Singleton {
 					var randomIndex = Math.floor(Math.random() * wallpaperList.length)
 					var randomPath = wallpaperList[randomIndex]
 					changeWallpaper(undefined, randomPath)
+				} else {
+					// List not yet loaded, use cached wallpaper if available
+					var cached = currentWallpapers[Screen.name]
+					if (cached) {
+						Logger.log("Wallpaper", "Using cached wallpaper until list loads")
+					}
 				}
 			}
 		}
