@@ -152,14 +152,14 @@ Singleton {
 			script += "  fi\n"
 			script += "done\n"
 			script += "# Run matugen\n"
-			script += "matugen image " + wp + " --config " + pathEsc + " --mode " + mode + "\n"
+			script += "matugen image " + wp + " --config " + pathEsc + " --mode " + mode + " --prefer darkness\n"
 
 			// Add user config execution if enabled
 			if (Settings.data.matugen.enableUserTemplates) {
 				var userConfigPath = Settings.configDir + "../matugen/config.toml"
 				script += "# Execute user config if it exists\n"
 				script += "if [ -f " + root.shellEscape(userConfigPath) + " ]; then\n"
-				script += "  matugen image " + wp + " --config " + root.shellEscape(userConfigPath) + " --mode " + mode + "\n"
+				script += "  matugen image " + wp + " --config " + root.shellEscape(userConfigPath) + " --mode " + mode + " --prefer darkness\n"
 				script += "fi\n"
 			}
 
