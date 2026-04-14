@@ -1,2 +1,48 @@
+# ==========================================
+# Neovim Plugin Manager Lock Files
+# ==========================================
 nvim/lazy-lock.json
 nvim/lazyvim.json
+
+# ==========================================
+# Backup and Temporary Files
+# ==========================================
+# Backup files created during editing
+*.bak
+# Temporary files
+*.tmp
+# Vim/Neovim swap files
+*.swp
+*.swo
+# Generic temporary files
+*~
+
+# ==========================================
+# Generated Files (Matugen/Theming)
+# ==========================================
+# Color schemes automatically generated from wallpapers by Matugen
+hypr/theme/colors-hyprland.conf
+quickshell/colors.json
+kitty/current-theme.conf
+
+# ==========================================
+# Runtime and State Files
+# ==========================================
+# Active profile state (changes frequently based on user interaction)
+hypr/hyprmod/active_profile
+# Profile metadata files
+hypr/hyprmod/profiles/*/meta.json
+
+# User-specific settings and state
+quickshell/settings.json
+gtk/gtk-3.0/bookmarks
+
+# ==========================================
+# Operating System Files
+# ==========================================
+# macOS
+.DS_Store
+# Windows
+Thumbs.db
+# Desktop entry backups (various desktop environments)
+*.desktop~
