@@ -138,11 +138,13 @@ Singleton {
 			Logger.log("Matugen", "  Config path:", root.dynamicConfigPath)
 
 			// Build the main script with improved escaping
-			var script = "set -e\n"  // Exit on first error
+			var script = "set -e\n"
 			script += "# Create config\n"
 			script += "cat > " + pathEsc + " << 'EOF'\n" + content + "EOF\n"
 			script += "# Add extra templates if they exist\n"
-			script += "for d in " + root.shellEscape(extraRepo) + " " + root.shellEscape(extraUser) + "; do\n"
+			script += "EXTRA_REPO=" + root.shellEscape(extraRepo) + "\n"
+			script += "EXTRA_USER=" + root.shellEscape(extraUser) + "\n"
+			script += "for d in \"$EXTRA_REPO\" \"$EXTRA_USER\"; do\n"
 			script += "  if [ -d \"$d\" ]; then\n"
 			script += "    for f in \"$d\"/*.toml; do\n"
 			script += "      [ -f \"$f\" ] && { echo; echo \"# extra: $f\"; cat \"$f\"; } >> " + pathEsc + "\n"
