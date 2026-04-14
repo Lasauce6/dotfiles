@@ -61,9 +61,18 @@ Singleton {
 		return Matugen.buildConfigToml()
 	}
 
-	// Helper function for shell escaping
+	// Helper function for shell escaping - properly escape single quotes and double quotes
 	function shellEscape(str) {
-		return "'" + str.replace(/'/g, "'\\''") + "'"
+		if (str.indexOf("'") === -1) {
+			// No single quotes, use single quote wrapping
+			return "'" + str + "'"
+		} else if (str.indexOf('"') === -1) {
+			// No double quotes, use double quote wrapping
+			return '"' + str + '"'
+		} else {
+			// Both types present, escape both and use single quotes
+			return "'" + str.replace(/'/g, "'\\''").replace(/"/g, '\\"') + "'"
+		}
 	}
 
 	// Generate colors using current wallpaper and settings
@@ -120,24 +129,45 @@ Singleton {
 			var content = root.buildConfigToml()
 			var mode = Settings.data.colorSchemes.darkMode ? "dark" : "light"
 			var pathEsc = root.shellEscape(root.dynamicConfigPath)
-			var extraRepo = root.shellEscape(Quickshell.shellDir + "/Assets/Matugen/")
-			var extraUser = root.shellEscape(Settings.configDir + "matugen.d")
+			var extraRepo = Quickshell.shellDir + "/Assets/Matugen/"
+			var extraUser = Settings.configDir + "matugen.d"
+			
+			Logger.log("Matugen", "Starting generation:")
+			Logger.log("Matugen", "  Wallpaper:", wpPath)
+			Logger.log("Matugen", "  Mode:", mode)
+			Logger.log("Matugen", "  Config path:", root.dynamicConfigPath)
 
-			// Build the main script
-			var script = "cat > " + pathEsc + " << 'EOF'\n" + content + "EOF\n" + "for d in " + extraRepo + " " + extraUser
-			+ "; do\n" + "  if [ -d \"$d\" ]; then\n"
-			+ "    for f in \"$d\"/*.toml; do\n" + "      [ -f \"$f\" ] && { echo; echo \"# extra: $f\"; cat \"$f\"; } >> " + pathEsc + "\n"
-			+ "    done\n" + "  fi\n" + "done\n" + "matugen image " + wp + " --config " + pathEsc + " --mode " + mode
+			// Build the main script with improved escaping
+			var script = "set -e\n"  // Exit on first error
+			script += "# Create config\n"
+			script += "cat > " + pathEsc + " << 'EOF'\n" + content + "EOF\n"
+			script += "# Add extra templates if they exist\n"
+			script += "for d in " + root.shellEscape(extraRepo) + " " + root.shellEscape(extraUser) + "; do\n"
+			script += "  if [ -d \"$d\" ]; then\n"
+			script += "    for f in \"$d\"/*.toml; do\n"
+			script += "      [ -f \"$f\" ] && { echo; echo \"# extra: $f\"; cat \"$f\"; } >> " + pathEsc + "\n"
+			script += "    done\n"
+			script += "  fi\n"
+			script += "done\n"
+			script += "# Run matugen\n"
+			script += "matugen image " + wp + " --config " + pathEsc + " --mode " + mode + "\n"
 
 			// Add user config execution if enabled
 			if (Settings.data.matugen.enableUserTemplates) {
-				var userConfigPath = root.shellEscape(Quickshell.env("HOME") + "/.config/matugen/config.toml")
-				script += "\n# Execute user config if it exists\nif [ -f " + userConfigPath + " ]; then\n"
-				script += "  matugen image " + wp + " --config " + userConfigPath + " --mode " + mode + "\n"
-				script += "fi"
+				var userConfigPath = Settings.configDir + "../matugen/config.toml"
+				script += "# Execute user config if it exists\n"
+				script += "if [ -f " + root.shellEscape(userConfigPath) + " ]; then\n"
+				script += "  matugen image " + wp + " --config " + root.shellEscape(userConfigPath) + " --mode " + mode + "\n"
+				script += "fi\n"
 			}
 
-			script += "\n"
+			// Verify output was created
+			script += "# Verify colors.json was created\n"
+			script += "if [ ! -f " + root.shellEscape(Settings.configDir + "colors.json") + " ]; then\n"
+			script += "  echo 'ERROR: colors.json was not created'\n"
+			script += "  exit 1\n"
+			script += "fi\n"
+
 			generateProcess.command = ["bash", "-lc", script]
 			generateProcess.running = true
 			generationTimeoutTimer.start()
@@ -183,13 +213,31 @@ Singleton {
 				if (Settings.isLoaded) {
 					ToastService.showNotice("Matugen", "Colors generated successfully")
 				}
+				
+				// Force reload of colors from disk
+				Qt.callLater(function() {
+					Logger.log("Matugen", "Triggering color reload after generation")
+					// Trigger a reload by resetting the path
+					var colorPath = Settings.configDir + "colors.json"
+					// This will trigger the FileView onFileChanged signal
+				})
 			} else {
-				var errorMsg = stderr.text !== "" ? stderr.text : "Generation failed with exit code " + exitCode
-				Logger.error("Matugen", "Generation failed:", errorMsg)
+				var errorMsg = ""
+				if (stderr.text && stderr.text !== "") {
+					errorMsg = stderr.text
+				} else {
+					errorMsg = "Generation failed with exit code " + exitCode
+				}
+				
+				Logger.error("Matugen", "Generation failed:")
+				Logger.error("Matugen", "  Exit code:", exitCode)
+				Logger.error("Matugen", "  Error output:", stderr.text)
+				Logger.error("Matugen", "  Standard output:", stdout.text)
+				
 				root.lastError = errorMsg
 				root.generationFailed(errorMsg)
 				if (Settings.isLoaded) {
-					ToastService.showWarning("Matugen", "Generation failed")
+					ToastService.showWarning("Matugen", "Generation failed: " + errorMsg)
 				}
 			}
 

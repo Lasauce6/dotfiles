@@ -46,6 +46,13 @@ Singleton {
 		return color.toString().replace("#", "#" + opacity)
 	}
 
+	// Force reload of colors from disk (called after Matugen generation)
+	function forceReload() {
+		Logger.log("Color", "Force reloading colors")
+		customColorsFile.path = ""
+		customColorsFile.path = Settings.configDir + "colors.json"
+	}
+
 	// --------------------------------
 	// Default colors: RosePine
 	QtObject {
@@ -107,7 +114,7 @@ Singleton {
 		path: Settings.configDir + "colors.json"
 		watchChanges: true
 		onFileChanged: {
-			Logger.log("Color", "Reloading colors from disk")
+			Logger.log("Color", "Detected colors.json change on disk, reloading...")
 			try {
 				reload()
 			} catch (error) {
@@ -115,7 +122,7 @@ Singleton {
 			}
 		}
 		onAdapterUpdated: {
-			Logger.log("Color", "Writing colors to disk")
+			Logger.log("Color", "Colors adapter updated")
 			try {
 				writeAdapter()
 			} catch (error) {
@@ -160,6 +167,15 @@ Singleton {
 
 			property color mOutline: defaultColors.mOutline
 			property color mShadow: defaultColors.mShadow
+		}
+	}
+
+	// Listen for Matugen generation and force reload
+	Connections {
+		target: MatugenService
+		function onGenerationSucceeded() {
+			Logger.log("Color", "Matugen generation succeeded, triggering color reload")
+			Qt.callLater(forceReload)
 		}
 	}
 }

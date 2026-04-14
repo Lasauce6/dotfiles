@@ -26,6 +26,18 @@ Singleton {
     }
   }
 
+  // Listen for Matugen generation completion
+  Connections {
+    target: MatugenService
+    function onGenerationSucceeded() {
+      Logger.log("ColorScheme", "Matugen generation succeeded, reloading colors")
+      Qt.callLater(reloadColorsFromDisk)
+    }
+    function onGenerationFailed(errorMessage) {
+      Logger.error("ColorScheme", "Matugen generation failed:", errorMessage)
+    }
+  }
+
   // --------------------------------
   function init() {
     // does nothing but ensure the singleton is created
@@ -47,6 +59,13 @@ Singleton {
     // Force reload by bouncing the path
     schemeReader.path = ""
     schemeReader.path = filePath
+  }
+
+  // Force reload of colors from disk
+  function reloadColorsFromDisk() {
+    Logger.log("ColorScheme", "Force reloading colors from disk")
+    schemeReader.path = ""
+    schemeReader.path = colorsJsonFilePath
   }
 
   FolderListModel {
@@ -83,8 +102,8 @@ Singleton {
             variant = data.light || data.dark
           }
         }
+        Logger.log("ColorScheme", "Loaded scheme from:", path)
         writeColorsToDisk(variant)
-        Logger.log("ColorScheme", "Applying color scheme:", path)
       } catch (e) {
         Logger.error("ColorScheme", "Failed to parse scheme JSON:", e)
       }
@@ -96,8 +115,7 @@ Singleton {
     id: colorsWriter
     path: colorsJsonFilePath
     onSaved: {
-
-      // Logger.log("ColorScheme", "Colors saved")
+      Logger.log("ColorScheme", "Colors written to disk successfully")
     }
     JsonAdapter {
       id: out
@@ -137,6 +155,7 @@ Singleton {
     out.mOutline = pick(obj, "mOutline", "outline", out.mOutline)
     out.mShadow = pick(obj, "mShadow", "shadow", out.mShadow)
 
+    Logger.log("ColorScheme", "Writing colors to disk")
     // Force a rewrite by updating the path
     colorsWriter.path = ""
     colorsWriter.path = colorsJsonFilePath
