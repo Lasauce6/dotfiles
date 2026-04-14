@@ -16,15 +16,24 @@ Singleton {
 		if (Settings.isLoaded) {
 			initializeCache()
 		} else {
-			var settingsLoadedConnection
-			settingsLoadedConnection = Settings.onIsLoadedChanged.connect(function() {
-				if (Settings.isLoaded) {
-					initializeCache()
-					settingsLoadedConnection.disconnect()
-				}
-			})
+			// Will be initialized when Settings.isLoadedChanged signal fires
+			Logger.log("Wallpaper", "Waiting for Settings to load before initializing cache")
 		}
 	}
+
+	// Listen for Settings loaded signal
+	Connections {
+		target: Settings
+		function onIsLoadedChanged() {
+			if (Settings.isLoaded && !root.cacheInitialized) {
+				Logger.log("Wallpaper", "Settings loaded, initializing cache")
+				initializeCache()
+				root.cacheInitialized = true
+			}
+		}
+	}
+
+	property bool cacheInitialized: false
 
 	function initializeCache() {
 		Logger.log("Wallpaper", "Initializing cache from Settings")
