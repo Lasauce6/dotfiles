@@ -145,6 +145,15 @@ ColumnLayout {
 				}
 			}
 
+			NToggle {
+				label: "Show success toast"
+				description: "Display a notification when colors are generated successfully."
+				checked: Settings.data.matugen.showSuccessToast
+				onToggled: checked => {
+					Settings.data.matugen.showSuccessToast = checked
+				}
+			}
+
 			NDivider {
 				Layout.fillWidth: true
 				Layout.topMargin: Style.marginXL * scaling

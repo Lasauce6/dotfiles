@@ -211,10 +211,10 @@ Singleton {
 			if (exitCode === 0) {
 				Logger.log("Matugen", "Generation completed successfully")
 				root.lastError = ""
-				root.generationSucceeded()
-				if (Settings.isLoaded) {
-					ToastService.showNotice("Matugen", "Colors generated successfully")
-				}
+			root.generationSucceeded()
+			if (Settings.isLoaded && Settings.data.matugen.showSuccessToast) {
+				ToastService.showNotice("Matugen", "Colors generated successfully")
+			}
 				
 				// Force reload of colors from disk
 				Qt.callLater(function() {
